@@ -1,13 +1,6 @@
 #include <iostream>
 #include <string>
-
-//class for keeping info on transaction of book
-struct SalesData
-{
-	std::string ISBN;
-	unsigned itemsSold = 0;
-	double revenue = 0.0;
-};
+#include "SalesData.h"
 
 int main()
 {
