@@ -5,14 +5,16 @@ using namespace std;
 
 int main ()
 {
-    char firstArr[] = "Han Solo";
-    char secondArr[] = "Princess Leia";
-    char thirdArr[strlen(strcat(firstArr, secondArr))];
-    strcpy (thirdArr, strcat(firstArr, secondArr));
+    const char firstArr[] = "Han Solo";
+    const char secondArr[] = "Princess Leia";
 
-    for (auto c : thirdArr)
-        cout << c;
-    cout << endl;
+    size_t thirdSize = strlen(firstArr) + strlen(secondArr) + 1;
+    char thirdArr[thirdSize];
+
+    strcpy (thirdArr, firstArr);
+    strcat (thirdArr, secondArr);
+
+    cout << thirdArr << endl;
 
     return 0;
 }
