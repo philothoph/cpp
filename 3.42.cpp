@@ -1,10 +1,7 @@
 #include <vector>
-#include <iterator>
 #include <iostream>
 
 using std::vector;
-using std::begin;
-using std::end;
 using std::cout;
 using std::endl;
 
