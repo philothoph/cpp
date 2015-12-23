@@ -9,7 +9,7 @@ int main()
     const size_t rowNum = 4, colNum = 5;
     int ia[rowNum][colNum];
 
-    /*for loop with subsripts*/
+    /*for loop with subscript*/
     //input
     for (size_t row = 0; row != rowNum; ++row)
         for (size_t col = 0; col != colNum; ++col)
