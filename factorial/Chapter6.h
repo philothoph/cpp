@@ -1,2 +1,2 @@
 int abs();
-unsigned fact();
+unsigned fact(unsigned);
