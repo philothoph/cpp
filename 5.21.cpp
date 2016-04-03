@@ -10,7 +10,7 @@ int main()
 
     while (cin >> word)
     {
-        if (word == word1)
+        if (word == word1 && isupper(word[0]))
             break;
         word1 = word;
     }
