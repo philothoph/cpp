@@ -1,22 +1,18 @@
 #ifndef SALESDATAH
-#define SALESDATAH #include <iostream>
+#define SALESDATAH
+
+#include <iostream>
 #include <string>
 using std::string;
 
 struct SalesData;
 std::istream& read(std::istream&, SalesData&); //declaration for istream constructor
 
-class SalesData
+struct SalesData
 {
-//friend declarations of non-class functions
-friend std::ostream& print(std::ostream& os, const SalesData&);
-friend std::istream& read(std::istream& is, SalesData&);
-
-public:
     //constructors
     SalesData() = default;
-    //SalesData() : itemsSold(0), revenue(0) {}	       //Exercise 7.14
-    SalesData(const string& s) : ISBN(s) {}            //initilizing ISBN
+    SalesData(const string& s) : ISBN(s) {} //initilize ISBN
     SalesData(const string& s, unsigned n, double p) : //n is number of sold copies 
               ISBN(s), itemsSold(n), revenue(p * n) {} //i is price of each one 
     SalesData(std::istream& is) { read(is, *this); }   //defining in class
@@ -25,7 +21,7 @@ public:
     string isbn() const { return ISBN; }    //defining
     SalesData& combine(const SalesData&);   //declaring
     double avg() const  { return revenue / itemsSold; } //defining average price function
-private:
+
 	std::string ISBN;
 	unsigned itemsSold = 0;
 	double revenue = 0.0;

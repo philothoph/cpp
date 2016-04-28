@@ -1,5 +1,8 @@
 //Exercise 7.6: Define your own versions of the add, read, and print functions.
 
+#ifndef SALESDATAFUNCTIONSH
+#define SALESDATAFUNCTIONSH
+
 #include <iostream>
 #include "SalesData.h"
 
@@ -27,4 +30,6 @@ std::istream& read(std::istream& is, SalesData& item)
     is >> item.ISBN >> item.itemsSold >> item.revenue;
     return is;
 }
+
+#endif
 
