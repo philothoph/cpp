@@ -33,7 +33,7 @@ private:
 
 //defining member function to merge a SalesData object with another
 //and return first one with changes
-SalesData& SalesData::combine(const SalesData& rhs)
+inline SalesData& SalesData::combine(const SalesData& rhs)
 {
 	itemsSold += rhs.itemsSold;
 	revenue += rhs.revenue;
