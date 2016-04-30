@@ -3,7 +3,7 @@
 #include <string>
 using std::string;
 
-struct SalesData;
+class SalesData;
 std::istream& read(std::istream&, SalesData&); //declaration for istream constructor
 
 class SalesData
@@ -18,7 +18,7 @@ public:
     //SalesData() : itemsSold(0), revenue(0) {}	       //Exercise 7.14
     SalesData(const string& s) : ISBN(s) {}            //initilizing ISBN
     SalesData(const string& s, unsigned n, double p) : //n is number of sold copies 
-              ISBN(s), itemsSold(n), revenue(p * n) {} //i is price of each one 
+              ISBN(s), itemsSold(n), revenue(p * n) {} //p is price of each one 
     SalesData(std::istream& is) { read(is, *this); }   //defining in class
 
     //member functions
@@ -44,8 +44,6 @@ inline SalesData& SalesData::combine(const SalesData& rhs)
 SalesData add(const SalesData&, const SalesData&); //returns new SalesData object
 std::ostream& print(std::ostream& os, const SalesData&);     //returns output stream
 std::istream& read(std::istream& is, SalesData&);            //returns input stream
-
-//defining constructor with standard output initilization
 
 #endif
 
