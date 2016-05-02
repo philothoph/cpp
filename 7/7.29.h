@@ -24,17 +24,17 @@ public:
     Screen(pos w, pos h, char c) : width(w), height(h), contents(w * h, c) {}
 
     //member function declarations
-    Screen& move(pos r, pos c);   //move cursor to a given location
+    Screen move(pos r, pos c);   //move cursor to a given location
     char get(pos r, pos c) const; //get the character from a given location
-    Screen& set(char c);          //set the given character at the cursor
+    Screen set(char c);          //set the given character at the cursor
 
     //member function definition
     //overloaded member function get() gets the character at the cursor
     char get() const { return contents[cursor]; }
      //display the content of the Screen object
-    Screen& display(std::ostream& os) { do_display(os); return *this; }
+    Screen display(std::ostream& os) { do_display(os); return *this; }
     //overloaded member for const Screen objects
-    const Screen& display(std::ostream& os) const { do_display(os); return *this; }
+    const Screen display(std::ostream& os) const { do_display(os); return *this; }
 
 private:
     // width and height of screen
@@ -49,7 +49,7 @@ private:
 };
 
 //definitions of member functions
-inline Screen& Screen::move(pos r, pos c)
+inline Screen Screen::move(pos r, pos c)
 {
     if (r > 0 && c > 0)
         cursor = (r - 1) * width + c;
@@ -61,7 +61,7 @@ inline char Screen::get(pos r, pos c) const
     return contents[(r - 1) * width + c];
 }
 
-inline Screen& Screen::set(char c)
+inline Screen Screen::set(char c)
 {
     contents[cursor] = c;
     return *this;
