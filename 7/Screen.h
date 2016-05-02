@@ -4,6 +4,8 @@
 // and initializes the contents to hold the given number of blanks;
 // and a constructor that takes values for height, width, and a
 // character to use as the contents of the screen.
+// Exercise 7.27: Add the move, set, and display operations
+// to your version of the Screen class
 
 #ifndef SCREENH
 #define SCREENH
