@@ -1,35 +1,48 @@
-// Exercise 7.23: Write your own version of the Screen class.
-// Exercise 7.24: Give your Screen class three constructors:
-// a default constructor; a constructor that takes values for height and width
-// and initializes the contents to hold the given number of blanks;
-// and a constructor that takes values for height, width, and a
-// character to use as the contents of the screen.
-// Exercise 7.27: Add the move, set, and display operations
-// to your version of the Screen class
+// Exercise 7.32: Define your own versions of Screen and Window_mgr
+// in which clear is a member of Window_mgr and a friend of Screen.
 
-
-#ifndef SCREENH
-#define SCREENH
+#ifndef E732H
+#define E732H
 
 #include <string>
 #include <iostream>
+#include <vector>
 
-extern class Window_mgr{public: void clear();};
+class Screen;
 
+class Window_mgr
+{
+public:
+    //variable for index of each screen
+    using ScreenIndex = std::vector<Screen>::size_type;
+
+    //constructors
+    Window_mgr(); 
+    //constructor initializes n displays with blank 80x24 screens
+    Window_mgr(ScreenIndex);
+
+    //declaration of overloaded clear function, friend of Screen class
+    void clear(); //removes all Screens and initializes new blank 
+    void clear(ScreenIndex); //removes given Screen
+
+private:
+    std::vector<Screen> screens;
+
+};
 class Screen
 {
 public:
     using pos = std::string::size_type;
 
     //friend declaration of clear from Window_mgr class
-    friend void Window_mgr::clear();
+    friend void Window_mgr::clear(ScreenIndex);
     
     //constructors
     Screen() = default;
-    //constructor to initilize Screen of given width and heigth,
+    //constructor to initialize Screen of given width and height,
     //filled with blanks
     Screen(pos w, pos h) : width(w), height(h), contents(w * h, ' ') {}
-    //constructor to init Screen of given wdth and hgth,
+    //constructor to init Screen of given wdth and hght,
     //filled with given character
     Screen(pos w, pos h, char c) : width(w), height(h), contents(w * h, c) {}
 
@@ -59,7 +72,31 @@ private:
     void do_display(std::ostream& os) const { os << contents; }
 };
 
-//definitions of member functions
+//constructors of Window_mgr class
+
+Window_mgr::Window_mgr()
+{
+    std::vector<Screen> screens{ Screen(80, 24) };
+}
+
+Window_mgr::Window_mgr(ScreenIndex n)
+{
+    std::vector<Screen> screens(n, Screen(80, 24));
+}
+
+//definition of member of Window_mgr class
+inline void Window_mgr::clear()
+{
+    screens = { Screen(80, 24, ' ') };
+}
+
+inline void Window_mgr::clear(ScreenIndex i)
+{
+    Screen& screen = screens[i];
+    screen.contents = std::string(" ", screen.width * screen.height);
+}
+
+//definitions of member functions of Screen class
 inline Screen& Screen::move(pos r, pos c)
 {
     if (r > 0 && c > 0)
