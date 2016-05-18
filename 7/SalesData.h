@@ -1,5 +1,6 @@
 #ifndef SALESDATAH
-#define SALESDATAH #include <iostream>
+#define SALESDATAH 
+#include <iostream>
 #include <string>
 using std::string;
 
