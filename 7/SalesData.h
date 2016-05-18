@@ -15,12 +15,27 @@ friend std::istream& read(std::istream& is, SalesData&);
 
 public:
     //constructors
-    SalesData() = default;
-    //SalesData() : itemsSold(0), revenue(0) {}	       //Exercise 7.14
-    SalesData(const string& s) : ISBN(s) {}            //initilizing ISBN
-    SalesData(const string& s, unsigned n, double p) : //n is number of sold copies 
-              ISBN(s), itemsSold(n), revenue(p * n) {} //p is price of each one 
-    SalesData(std::istream& is) { read(is, *this); }   //defining in class
+	//delegated-to constructor
+	SalesData(const string& s, unsigned n, double p)   //n is number of sold copies 
+		: ISBN(s), itemsSold(n), revenue(p * n)        //p is price of each one 
+	{
+		std::cout << "Not delegating constructor" << std::endl;
+	}
+	//delegating constructors
+	SalesData() : SalesData("", 0, 0) 
+	{
+		std::cout << "Default constructor" << std::endl;
+	}
+    //SalesData() : itemsSold(0), revenue(0) {}	                     //Exercise 7.14
+    SalesData(const string& s) : SalesData(s, 0, 0)                  //initilizing ISBN
+	{
+		std::cout << "SalesData(const string& s) constructor" << std::endl;
+	}               
+    SalesData(std::istream& is) : SalesData() 
+	{
+		std::cout << "SalesData(istream&) constructor" << std::endl;
+		read(is, *this); 
+	}
 
     //member functions
     string isbn() const { return ISBN; }    //defining
