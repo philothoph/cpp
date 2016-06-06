@@ -4,15 +4,22 @@
 #include <string>
 #include <iostream>
 
+//declaration for istream constructor
+class Person;
+std::istream& read(std::istream&, Person&);
+
 //class to hold name and address of person
 class Person
 {
 friend std::ostream& print(std::ostream&, const Person&);
 friend std::istream& read(std::istream&, Person&);
 public:
+    //constructors
     Person() = default;
-    Person(std::string& n) : nm(n) {}                         //init with name
-    Person(std::string& n, std::string& a) : nm(n), adrs(a) {}//with name and address
+    Person(const std::string& n) : nm(n) {}                         //init with name
+    Person(const std::string& n, const std::string& a) : nm(n), adrs(a) {}//with name and address
+    explicit Person(std::istream& is) { read(is, *this); }
+
     //member function to return name of a person
     const std::string& name() const { return nm; }
     //member function to return address of a person

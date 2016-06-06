@@ -40,7 +40,7 @@ public:
     //member functions
     string isbn() const { return ISBN; }    //defining
     SalesData& combine(const SalesData&);   //declaring
-    double avg() const  { return revenue / itemsSold; } //defining average price function
+    double avg() const  { return itemsSold ? revenue / itemsSold : 0; } //defining average price function
 private:
 	std::string ISBN;
 	unsigned itemsSold = 0;
@@ -62,4 +62,3 @@ std::ostream& print(std::ostream& os, const SalesData&);     //returns output st
 std::istream& read(std::istream& is, SalesData&);            //returns input stream
 
 #endif
-
